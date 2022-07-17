@@ -29,10 +29,6 @@ class EventAdapter(
             .inflate(R.layout.item_event, parent, false)
 
         val vh = EventViewHolder(v)
-        val card: CardView = vh.cardEvent
-        card.setCardBackgroundColor(Color.parseColor("#E6E6E6"));
-        card.maxCardElevation = 0.0F;
-        card.radius = 5.0F;
 
         vh.layoutEvent.setOnClickListener { view ->
             val position = vh.absoluteAdapterPosition
@@ -60,6 +56,5 @@ class EventAdapter(
         var imgEvent: ImageView? = view.findViewById(R.id.ivImageEvent)
         var txtTitleEvent: TextView? =  view.findViewById(R.id.tvTitleEvent)
         var layoutEvent: ConstraintLayout = view.findViewById(R.id.layoutEvent)
-        var cardEvent: MaterialCardView = view.findViewById(R.id.mcCardEvent)
     }
 }
