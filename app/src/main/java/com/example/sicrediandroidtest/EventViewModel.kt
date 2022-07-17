@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.sicrediandroidtest.Utils.NetworkUtils
+import com.example.sicrediandroidtest.utils.NetworkUtils
 import com.example.sicrediandroidtest.model.Event
 import com.example.sicrediandroidtest.model.interfaces.EventHttpApi
 import retrofit2.Call

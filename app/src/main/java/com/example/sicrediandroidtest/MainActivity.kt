@@ -1,11 +1,10 @@
 package com.example.sicrediandroidtest
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onItemClick(v: View, event: Event, position: Int) {
-        Log.d("Clicado", event.title)
+        val dialogDetailsEvent = BottomDialogDetailsEvent(event)
+        dialogDetailsEvent.show(supportFragmentManager, "DetailEvent")
     }
 }
