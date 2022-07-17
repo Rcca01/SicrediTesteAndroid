@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun onItemClick(v: View, event: Event, position: Int) {
+    private fun onItemClick(event: Event) {
         val dialogDetailsEvent = BottomDialogDetailsEvent(event, this::onSignUpEvent)
         dialogDetailsEvent.show(supportFragmentManager, "DetailEvent")
     }

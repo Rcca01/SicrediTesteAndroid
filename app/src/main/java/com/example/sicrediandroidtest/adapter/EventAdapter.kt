@@ -1,23 +1,20 @@
 package com.example.sicrediandroidtest.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sicrediandroidtest.R
 import com.example.sicrediandroidtest.model.Event
-import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
 
 class EventAdapter(
     private val listEvents: List<Event>,
-    private val onItemClick: (View, Event, Int) -> Unit,
+    private val onItemClick: (Event) -> Unit,
     private val context: Context
 ): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
@@ -30,10 +27,10 @@ class EventAdapter(
 
         val vh = EventViewHolder(v)
 
-        vh.layoutEvent.setOnClickListener { view ->
+        vh.layoutEvent.setOnClickListener {
             val position = vh.absoluteAdapterPosition
             val event = listEvents[position]
-            onItemClick(view, event, position)
+            onItemClick(event)
         }
         return vh
     }
