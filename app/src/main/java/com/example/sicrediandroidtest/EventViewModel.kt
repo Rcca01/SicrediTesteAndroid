@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sicrediandroidtest.utils.NetworkUtils
 import com.example.sicrediandroidtest.model.Event
+import com.example.sicrediandroidtest.model.User
 import com.example.sicrediandroidtest.model.interfaces.EventHttpApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +18,9 @@ class EventViewModel: ViewModel() {
 
     private val listMutEvents: MutableLiveData<List<Event>> = MutableLiveData()
     fun listEvents(): LiveData<List<Event>> = listMutEvents
+
+    private val singUpEvent = MutableLiveData<Boolean>()
+    fun userSingUpEvent(): LiveData<Boolean> = singUpEvent
 
     val retrofitClient = NetworkUtils
         .getRetrofitInstance(EventHttpApi.WEB_SERVICE)
@@ -48,6 +52,22 @@ class EventViewModel: ViewModel() {
 
             override fun onResponse(call: Call<Event>, response: Response<Event>) {
                 Log.d("Success", response.isSuccessful.toString())
+            }
+        })
+    }
+
+    fun checkInEvent(user:User){
+        val response = eventHttpApi.sendCheckInEvent(user)
+        response.enqueue(object: Callback<Any> {
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                singUpEvent.postValue(false)
+            }
+
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if (response.isSuccessful)
+                    singUpEvent.postValue(true)
+                else
+                    singUpEvent.postValue(false)
             }
         })
     }

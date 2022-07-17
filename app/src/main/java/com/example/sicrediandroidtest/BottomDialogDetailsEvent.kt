@@ -14,7 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
 
 class BottomDialogDetailsEvent(
-    detailsEvent: Event
+    detailsEvent: Event,
+    private val onSignUpEvent: (idEvent: String, refButtonSignUp: Button) -> Unit
 ): BottomSheetDialogFragment() {
 
     private lateinit var ivImageDetailsEvent: ImageView
@@ -61,6 +62,10 @@ class BottomDialogDetailsEvent(
 
         btnSharedEvent.setOnClickListener {
             shareLinkEvent(details.title)
+        }
+
+        btnSingUp.setOnClickListener {
+            onSignUpEvent(details.id, btnSingUp)
         }
 
         dialog.setContentView(view)
