@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sicrediandroidtest.idlingResource.IdleResource
 import com.example.sicrediandroidtest.adapter.EventAdapter
 import com.example.sicrediandroidtest.model.Event
 import com.example.sicrediandroidtest.model.User
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             rvEvents.layoutManager = layoutManager
             progressBar.visibility = View.GONE
+            IdleResource.instance.decrement()
         })
         viewModel.userSingUpEvent().observe(this, { signUp ->
             signUp?.let {
