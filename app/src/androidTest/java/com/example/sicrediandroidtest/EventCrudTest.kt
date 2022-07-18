@@ -14,6 +14,7 @@ import androidx.test.rule.ActivityTestRule
 import com.example.sicrediandroidtest.idlingResource.IdleResource
 import org.junit.Rule
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import com.example.sicrediandroidtest.utils.Utils
 
 
 @RunWith(AndroidJUnit4::class)
@@ -30,5 +31,15 @@ class EventCrudTest: Assert() {
                 .actionOnItemAtPosition<EventAdapter.EventViewHolder>(0, click()))
         onView(withId(R.id.btnDetailsEventClose)).check(matches(isDisplayed()))
         onView(withId(R.id.btnDetailsEventClose)).perform(click())
+    }
+
+    @Test
+    fun isDateCorrectString() {
+        assertEquals(Utils().formatDate(1534784400000.0), "20/08/2018")
+    }
+
+    @Test
+    fun isToMoneyPtBr() {
+        assertEquals(Utils().toMoneyPtBr(0.0), "R$ 0,00", "R$ 0,00")
     }
 }
